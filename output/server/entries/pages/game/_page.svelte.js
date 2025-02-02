@@ -1,5 +1,6 @@
-import { X as ensure_array_like, S as pop, Y as stringify, Q as push } from "../../../chunks/index.js";
+import { e as ensure_array_like, c as pop, p as push, d as stringify } from "../../../chunks/index.js";
 import { e as escape_html } from "../../../chunks/escaping.js";
+import "clsx";
 const replacements = {
   translate: /* @__PURE__ */ new Map([
     [true, "yes"],

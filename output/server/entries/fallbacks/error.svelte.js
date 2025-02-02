@@ -1,32 +1,25 @@
-import { T as getContext, V as store_get, W as unsubscribe_stores, S as pop, Q as push } from "../../chunks/index.js";
-import "../../chunks/client.js";
 import { e as escape_html } from "../../chunks/escaping.js";
-const getStores = () => {
-  const stores = getContext("__svelte__");
-  return {
-    /** @type {typeof page} */
-    page: {
-      subscribe: stores.page.subscribe
-    },
-    /** @type {typeof navigating} */
-    navigating: {
-      subscribe: stores.navigating.subscribe
-    },
-    /** @type {typeof updated} */
-    updated: stores.updated
-  };
-};
-const page = {
-  subscribe(fn) {
-    const store = getStores().page;
-    return store.subscribe(fn);
+import "clsx";
+import { g as getContext, c as pop, p as push } from "../../chunks/index.js";
+import { s as stores } from "../../chunks/client.js";
+({
+  check: stores.updated.check
+});
+function context() {
+  return getContext("__request__");
+}
+const page$1 = {
+  get error() {
+    return context().page.error;
+  },
+  get status() {
+    return context().page.status;
   }
 };
+const page = page$1;
 function Error$1($$payload, $$props) {
   push();
-  var $$store_subs;
-  $$payload.out += `<h1>${escape_html(store_get($$store_subs ??= {}, "$page", page).status)}</h1> <p>${escape_html(store_get($$store_subs ??= {}, "$page", page).error?.message)}</p>`;
-  if ($$store_subs) unsubscribe_stores($$store_subs);
+  $$payload.out += `<h1>${escape_html(page.status)}</h1> <p>${escape_html(page.error?.message)}</p>`;
   pop();
 }
 export {
